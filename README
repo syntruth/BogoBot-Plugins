@@ -4,11 +4,24 @@ These plugins are either more 'advanced' than what I wanted to put into
 the bot distro or are just kinda fringe, niche needs, or just silly.
 
 Plugins
--------
+#######
 
-QuoteDB -- allows the saving of quotes from chat. Typically, we have used
-           this for out of context quotes in our channel. We have defacto
-           tags, such as (Overheard) or (IM) if the quote is from outside
-           of IRC. This version use ActiveRecord and SQLite3, so you need
-           those gems installed.
+QuoteDB
+-------
+Allows the saving of quotes from chat. Typically, we have used
+this for out of context quotes in our channel. We have defacto
+tags, such as (Overheard) or (IM) if the quote is from outside
+of IRC. This version use ActiveRecord and SQLite3, so you need
+those gems installed.
+
+BitlyUrl
+--------
+Watched for URLs in chat, and if they are over a certain length,
+then it's send off to bit.ly to get a short version which is then
+displayed in chat. Mostly useful for those of us who use text
+based IRC clients like irssi or wee-chat.
+
+This plugin requires you to obtain your own bit.ly login and API
+key, but those cost nothing 'cept a little time in signing up on
+http://bit.ly
 
