@@ -129,6 +129,7 @@ class QuoteDB < Plugin::PluginBase
         else
           "Thank you, #{nick}. There are now #{num} quotes."
         end
+        msg += " (id: #{Quote.find(:last).id})"
       else
         msg = "I was unable to save the quote!"
       end
