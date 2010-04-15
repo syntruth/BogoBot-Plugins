@@ -1,0 +1,14 @@
+These are extra plugins for BogoBot not included in the BogoBot distro.
+
+These plugins are either more 'advanced' than what I wanted to put into
+the bot distro or are just kinda fringe, niche needs, or just silly.
+
+Plugins
+-------
+
+QuoteDB -- allows the saving of quotes from chat. Typically, we have used
+           this for out of context quotes in our channel. We have defacto
+           tags, such as (Overheard) or (IM) if the quote is from outside
+           of IRC. This version use ActiveRecord and SQLite3, so you need
+           those gems installed.
+
