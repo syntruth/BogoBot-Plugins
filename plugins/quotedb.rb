@@ -67,8 +67,8 @@ class QuoteDB < Plugin::PluginBase
       self.do_qlog(bot, event)
     end
 
-    quote_help = "{cmd}quote <term> -- Looks for a quote, " + 
-      "optionally with a search term."
+    quote_help = "{cmd}quote <term>|id: <num> -- Looks for a quote, " + 
+      "optionally with a search term or id number."
     bot.add_command(self, "quote", false, false, quote_help) do |bot, event|
       self.do_quote(bot, event)
     end
@@ -172,9 +172,20 @@ class QuoteDB < Plugin::PluginBase
   def do_qcount(bot, event)
     term = bot.parse_message(event)
 
+    return if term.length < 3
+
     if term.any?
-      num = Quote.count(:conditions => "quote like '%#{term}%'")
-      msg = "There are #{num} quote(s) that match term: #{term}"
+      quotes = Quote.find(:all, 
+        :conditions => "quote like '%#{term}%'",
+        :order => :id
+      )
+      num = quotes.count()
+      if num <= 10
+        ids = quotes.collect {|q| q.id}.join(", ")
+        msg = "There are #{num} quote(s) that match term: #{term} IDs: (#{ids})"
+      else
+        msg = "There are #{num} quote(s) that match term: #{term}."
+      end
     else
       num = Quote.count()
       msg = "There are #{num} quotes."
