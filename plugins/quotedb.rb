@@ -179,13 +179,10 @@ class QuoteDB < Plugin::PluginBase
         :conditions => "quote like '%#{term}%'",
         :order => :id
       )
-      num = quotes.count()
-      if num <= 10
-        ids = quotes.collect {|q| q.id}.join(", ")
-        msg = "There are #{num} quote(s) that match term: #{term} IDs: (#{ids})"
-      else
-        msg = "There are #{num} quote(s) that match term: #{term}."
-      end
+
+      msg  = "There are #{quotes.count} quote(s) that match the term: #{term} "
+      msg += "(#{quotes.collect{|q| q.id }.join(', ')})" if quotes.count <= 10
+
     else
       num = Quote.count()
       msg = "There are #{num} quotes."
